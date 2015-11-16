@@ -1,3 +1,9 @@
+//  Created by Eloisa Baez Jones.
+//
+//
+/* Name: GoTo.c
+ */
+
 // drive to given location
 // read in given location
 // read in current location/call localization
