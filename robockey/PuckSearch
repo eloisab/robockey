@@ -11,3 +11,7 @@
 #include "math.h"
 #include "m_wii.h"
 #include "m_bus.h"
+
+// have array of locations to drive to
+
+unsigned int locations[12] ={500, 500, 2, 500, 500, 3, 500, 500, 4, 500, 500,3};

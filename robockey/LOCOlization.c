@@ -173,7 +173,7 @@ char current_location(unsigned int* position)
     position[2] = (unsigned int) theta*(180/M_PI);;
     
     return 1;
-    }
+}
 
 int calc_dist(int x1, int y1, int x2, int y2)
 {
