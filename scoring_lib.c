@@ -27,11 +27,11 @@ void score_goal(int x1, int y1, int theta, int side)
     
     // get constants
     if (side>0){
-        get_constants(constants, -115, -40, x1, y1, theta, side);
+        get_constants(constants, -90, 0, x1, y1, theta, side);
     }
     else
     {
-        get_constants(constants, 115, -40, x1, y1, theta, side);
+        get_constants(constants, 90, 0, x1, y1, theta, side);
     }
     
     float p = constants[0]; // speed constant
@@ -134,14 +134,14 @@ char get_constants(float* constants, int x_final, int y_final, int x_pos, int y_
     //p = 1 - abs((y_pos-y_final)/200);
     d2 = 1;
     p = .5;
-    if( y_pos > 60)
+    if( y_pos > 50)
     {
         d = 1;
         d2 = 0;
         p = .6;
         j = 1;
     }
-    else if(y_pos< -60)
+    else if(y_pos< -50)
     {
         d = 1;
         d2 = 0;

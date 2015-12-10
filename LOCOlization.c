@@ -25,7 +25,7 @@ char current_location(int* position)
     // read wii camera blob data into int buffer
     m_wii_read(buffer);
     
-    // points
+    // star points
     int x1 = (int)buffer[0];
     int y1 = (int)buffer[1];
     int x2 = (int)buffer[3];
@@ -39,6 +39,7 @@ char current_location(int* position)
     int x_points[4] = {x1, x2, x3, x4};
     int y_points[4] = {y1, y2, y3, y4};
     
+    // lose star case
     int i;
     for(i = 0; i<=4;i++)
     {
@@ -67,12 +68,13 @@ char current_location(int* position)
     int max_dat[2];
     int min_dat[2];
 
-    // fill min and max arrays
+    // find min and max arrays
     max_array(all_distances, 6, max_dat);
     min_array(all_distances, 6, min_dat);
     
     // index of max and min points
     int max_index = max_dat[1];
+    int max = max_dat[0];
     int min_index = min_dat[1];
 
     // array of pair indicies
@@ -115,12 +117,12 @@ char current_location(int* position)
     double theta = atan2(x_diff, y_diff);
 
     // rotated points
-    float rotated_x = ((((camera_x-x_center)*cos(theta)) + ((camera_y-y_center)*-sin(theta))) + camera_x);
-    float rotated_y = ((((camera_x-x_center)*sin(theta)) + ((camera_y-y_center)*cos(theta))) + camera_y);
+    float rotated_x = ((((camera_x-x_center)*cos(theta)) + ((camera_y-y_center)*-sin(theta))) + camera_x) - camera_x;
+    float rotated_y = ((((camera_x-x_center)*sin(theta)) + ((camera_y-y_center)*cos(theta))) + camera_y) - camera_y;
 
     // position and angle relative to rink axes
-    position[0] = (int) (10*((512 - (rotated_x)))/28);
-    position[1] = (int) (10*(((rotated_y) - 384))/28);
+    position[0] = (int) (29*(rotated_x))/max;
+    position[1] = (int) (29*(rotated_y))/max;
     position[2] = (int) (theta*(180/M_PI));
     
     return 1;
